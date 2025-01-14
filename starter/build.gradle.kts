@@ -6,10 +6,15 @@ plugins {
     `java`
     `checkstyle`
     id("org.springframework.boot") version "2.7.2"
-    id("io.freefair.lombok") version "6.5.0.3"
+    id("io.freefair.lombok") version "8.11"
 }
 
 apply(plugin = "io.spring.dependency-management")
+
+checkstyle {
+    toolVersion = "8.29"
+	
+}
 
 repositories {
     mavenLocal()
@@ -27,9 +32,14 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.testcontainers:mongodb:1.17.3")
-    compileOnly("org.projectlombok:lombok:1.18.24")
+    compileOnly("org.projectlombok:lombok:1.18.36")
+	annotationProcessor ("org.projectlombok:lombok:1.18.36")
     compileOnly("org.apache.maven.plugins:maven-surefire-plugin:2.22.2")
+	testCompileOnly ("org.projectlombok:lombok:1.18.36")
+	testAnnotationProcessor ("org.projectlombok:lombok:1.18.36")
+
 }
+
 
 tasks.create<Exec>("import-sample-data") {
     workingDir("../sample-data")

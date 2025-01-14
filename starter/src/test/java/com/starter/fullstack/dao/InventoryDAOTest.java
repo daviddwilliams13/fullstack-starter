@@ -52,4 +52,28 @@ public class InventoryDAOTest {
     List<Inventory> actualInventory = this.inventoryDAO.findAll();
     Assert.assertFalse(actualInventory.isEmpty());
   }
+
+	/**
+		* Test Save Inventory method
+		*/
+	@Test
+	public void create() {
+    Assert.assertNotNull("InventoryDAO should not be null", inventoryDAO);
+		Inventory inventory = new Inventory(); 
+    inventory.setName("Testing Testing Product");
+    inventory.setProductType("Product Type 1");
+    
+		Inventory savedInventory = inventoryDAO.create(inventory);
+	
+
+      // Checks Saving inventory correctly and not null
+     Assert.assertNotNull("Inventory ID should not be null after save", savedInventory.getId());
+
+     // Outputs
+     System.out.println("Saved Inventory ID: " + savedInventory.getId());
+     System.out.println("Saved Inventory Name: " + savedInventory.getName());
+     System.out.println("Saved Inventory Product Type: " + savedInventory.getProductType());
+	}
+		
+
 }
